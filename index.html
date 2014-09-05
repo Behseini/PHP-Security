@@ -200,41 +200,7 @@ function sanitize($input) {
     return $output;
 }
 ?&gt;</pre>        
-        Then Pass data into data
- 
 
-B: Initialize data inside the ajax call on data property
-
-          .js:
-            <pre class="js">
-         var req = $.ajax({
-                            type: "POST",            
-                            url: "filemaker.php",
-                            dataType: "html",          
-                            data: { dir: "John", word: "Boston"}          
-          });
-          </pre>
-          
-          .php:
-           <pre class="php">
-              $dir  = trim($_POST['dir']); 
-              $word = trim($_POST['word']);
-              
-</pre>
-be aware that the data array also can be very straight like 
-
-                             data: { dir: $('#files :selected').text(), word: $("#fword").val()} 
-      
-    <pre class="js">
-&lt;script>
-$.ajax({
-  url: "test.html",
-  context: document.body
-}).done(function() {
-  $( this ).addClass( "done" );
-});
-&lt;/script&gt;
-</pre>
       
     </div><!-- End of Container -->
 
@@ -245,7 +211,6 @@ $.ajax({
    <script src="http://www.steamdev.com/snippet/js/jquery.snippet.min.js"></script>
   <script>
    $(function() {
- $("pre.js").snippet("javascript",{style:"acid",transparent:false,showNum:true});
  $("pre.php").snippet("php",{style:"acid",transparent:false,showNum:true});
 });
 </script>
@@ -253,42 +218,7 @@ $.ajax({
 </html>
 
 
-1) Function for stripping out malicious bits
 
-<?php
-function cleanInput($input) {
- 
-  $search = array(
-    '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
-    '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
-    '@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
-    '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
-  );
- 
-    $output = preg_replace($search, '', $input);
-    return $output;
-  }
-?>
-
-2) Sanitization function
-
-<?php
-function sanitize($input) {
-    if (is_array($input)) {
-        foreach($input as $var=>$val) {
-            $output[$var] = sanitize($val);
-        }
-    }
-    else {
-        if (get_magic_quotes_gpc()) {
-            $input = stripslashes($input);
-        }
-        $input  = cleanInput($input);
-        $output = mysql_real_escape_string($input);
-    }
-    return $output;
-}
-?>
 
 3- Usage
 
