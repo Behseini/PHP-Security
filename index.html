@@ -133,14 +133,14 @@ box-shadow:         0px 1px 5px 0px rgba(50, 50, 50, 0.75)!important;}
 
 <pre class="php">&lt;?php     
 function cleanInput($input) {
-$search = array(
-'@<script[^>]*?>.*?</script>@si',   // Strip out javascript
-'@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
-'@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
-'@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
-);
-$output = preg_replace($search, '', $input);
-return $output;
+ $search = array(
+  '@<script[^>]*?>.*?</script>@si',            // Strip out javascript
+  '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
+  '@<style[^>]*?>.*?</style>@siU',            // Strip style tags properly
+  '@<![\s\S]*?--[ \t\n\r]*>@'            // Strip multi-line comments
+ );
+  $output = preg_replace($search, '', $input);
+  return $output;
 }
 ?&gt;
 </pre> 
