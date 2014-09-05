@@ -130,6 +130,24 @@ box-shadow:         0px 1px 5px 0px rgba(50, 50, 50, 0.75)!important;}
     <h4>I am not a Programmer</h4>
     <p>Well, I know how to programming a little bit but I am not as good as you.</p>
   </div>
+  
+  <pre class="php">&lt;?php
+function sanitize($input) {
+    if (is_array($input)) {
+        foreach($input as $var=&gt;$val) {
+            $output[$var] = sanitize($val);
+        }
+    }
+    else {
+        if (get_magic_quotes_gpc()) {
+            $input = stripslashes($input);
+        }
+        $input  = cleanInput($input);
+        $output = mysql_real_escape_string($input);
+    }
+    return $output;
+}
+?&gt;</pre>  
 <h4>1 - Stripping</h4>
 <p>Function for stripping out malicious bits</p>
 
@@ -149,23 +167,7 @@ function cleanInput($input) {
 ?&gt;</pre> 
 
 
-<pre class="php">&lt;?php
-function sanitize($input) {
-    if (is_array($input)) {
-        foreach($input as $var=&gt;$val) {
-            $output[$var] = sanitize($val);
-        }
-    }
-    else {
-        if (get_magic_quotes_gpc()) {
-            $input = stripslashes($input);
-        }
-        $input  = cleanInput($input);
-        $output = mysql_real_escape_string($input);
-    }
-    return $output;
-}
-?&gt;</pre>        
+      
 <h4>2 - Sanitization function</h4>
 <p>Uses the function above, as well as adds slashes as to not screw up database functions.</p>
 <pre class="php">&lt;?php
