@@ -100,6 +100,14 @@ border-color: #d0e3f0;
 background-color: #dff0d8;
 border-color: #d6e9c6;
 }
+.snippet-wrap pre.sh_sourceCode {
+ box-shadow: 0px 0px 0px #000!important;
+-moz-box-shadow: 0px 0px 0px #000 !important;
+-webkit-box-shadow: 0px 0px 0px #000 !important;
+}
+pre{-webkit-box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75) !important;
+-moz-box-shadow:    0px 1px 5px 0px rgba(50, 50, 50, 0.75) !important;
+box-shadow:         0px 1px 5px 0px rgba(50, 50, 50, 0.75)!important;}
     </style>
   </head>
   <body>
@@ -124,18 +132,18 @@ border-color: #d6e9c6;
   </div>
 
           <pre class="php">
-          function cleanInput($input) {
- 
+     &lt;?php     
+  function cleanInput($input) {
   $search = array(
     '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
     '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
     '@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
     '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
   );
- 
     $output = preg_replace($search, '', $input);
     return $output;
   }
+  ?&gt;
 </pre> 
 3- Multipile Item Post
 
