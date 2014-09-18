@@ -160,7 +160,6 @@ function cleanInput($input) {
     '@&lt;style[^&gt;]*?&gt;.*?&lt;/style&gt;@siU',    // Strip style tags properly
     '@&lt;![\s\S]*?--[ \t\n\r]*&gt;@'         // Strip multi-line comments
   );
- 
     $output = preg_replace($search, '', $input);
     return $output;
   }
